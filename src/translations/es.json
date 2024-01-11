@@ -1,0 +1,19 @@
+{
+  "Home": {
+    "payment": "Crear pago"
+  },
+  "Payment": {
+    "title": "Crear pago",
+    "form": {
+      "amount": {
+        "label": "Importe a pagar",
+        "placeholder": "Añade importe a pagar"
+      },
+      "notes": {
+        "label": "Concepto",
+        "placeholder": "Añade descripción del pago"
+      },
+      "submit": "Continuar"
+    }
+  }
+}

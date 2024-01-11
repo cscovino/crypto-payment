@@ -1,0 +1,19 @@
+{
+  "Home": {
+    "payment": "New payment"
+  },
+  "Payment": {
+    "title": "New payment",
+    "form": {
+      "amount": {
+        "label": "Amount to pay",
+        "placeholder": "Add the amount to pay"
+      },
+      "notes": {
+        "label": "Concept",
+        "placeholder": "Add payment's description"
+      },
+      "submit": "Continue"
+    }
+  }
+}
