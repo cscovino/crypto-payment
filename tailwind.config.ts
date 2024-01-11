@@ -30,10 +30,14 @@ const config: Config = {
         },
         light: {
           white: '#FFFFFF',
+          200: '#F5F5F5',
           300: '#E5E9F2',
           400: '#EFF2F7',
           500: '#F9FAFC',
         },
+      },
+      boxShadow: {
+        payment: '0px 0px 4.387px 0px rgba(0, 0, 0, 0.02), 0px 0px 27px 0px rgba(0, 0, 0, 0.04)',
       },
     },
   },
