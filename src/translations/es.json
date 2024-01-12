@@ -19,6 +19,23 @@
       "submit": "Continuar"
     }
   },
+  "Summary": {
+    "order": {
+      "title": "Resumen del pedido",
+      "amount": "Importe",
+      "currency": "Moneda seleccionada",
+      "commerce": "Comercio",
+      "date": "Fecha",
+      "notes": "Concepto"
+    },
+    "payment": {
+      "title": "Realiza el pago",
+      "qr": "Smart QR",
+      "web3": "Web3",
+      "send": "Enviar",
+      "tag": "Etiqueta de destino"
+    }
+  },
   "Common": {
     "search": "Buscar"
   }

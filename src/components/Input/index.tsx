@@ -29,13 +29,13 @@ export default function Input({
 }: InputProps) {
   return (
     <>
-      <label className="label-form text-primary-dark" htmlFor={id}>
+      <label className="body-bold text-primary-dark" htmlFor={id}>
         {label}
       </label>
       <input
         id={id}
         name={name}
-        className="input-form w-full text-primary-dark placeholder:text-dark-400 py-[1.12rem] px-3 rounded-md border border-light-300 valid:border-dark-500"
+        className="body-regular w-full text-primary-dark placeholder:text-dark-400 py-[1.12rem] px-3 rounded-md border border-light-300 valid:border-dark-500"
         placeholder={placeholder}
         type={type}
         maxLength={maxLength}

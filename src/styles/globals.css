@@ -6,19 +6,25 @@
   .heading-2 {
     font-size: 1.875rem;
     font-weight: 700;
-    line-height: 2.375rem;
+    line-height: 126.667%;
+  }
+
+  .heading-4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 125%;
   }
 
   .heading-5 {
     font-size: 1.125rem;
     font-weight: 700;
-    line-height: 1.375rem;
+    line-height: 122.222%;
   }
 
   .heading-6 {
     font-size: 1rem;
     font-weight: 600;
-    line-height: 1.25rem;
+    line-height: 125%;
   }
 
   .stylized-small {
@@ -27,23 +33,41 @@
     line-height: 1rem;
   }
 
-  .label-form {
+  .stylized-medium {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 125%;
+  }
+
+  .stylized-semibold {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 166.667%;
+  }
+
+  .stylized-lead {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 100%;
+  }
+
+  .body-bold {
     font-size: 0.875rem;
     font-weight: 700;
-    line-height: 1.25rem;
+    line-height: 142.857%;
     letter-spacing: 0.00875rem;
   }
 
-  .input-form {
+  .body-regular {
     font-size: 0.875rem;
     font-weight: 400;
-    line-height: 1.25rem;
+    line-height: 142.857%;
     letter-spacing: 0.00875rem;
   }
 
   .footer-text {
     font-size: 0.75rem;
     font-weight: 700;
-    line-height: 1.125rem;
+    line-height: 150%;
   }
 }

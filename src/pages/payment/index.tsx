@@ -47,6 +47,7 @@ export default function CreatePayment({
             placeholder={t('form.notes.placeholder')}
             name="notes"
             id="notes"
+            maxLength={512}
           />
         </div>
         <Button type="submit" text={t('form.submit')} />

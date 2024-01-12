@@ -19,6 +19,23 @@
       "submit": "Continue"
     }
   },
+  "Summary": {
+    "order": {
+      "title": "Order summary",
+      "amount": "Amount",
+      "currency": "Selected currency",
+      "commerce": "Commerce",
+      "date": "Date",
+      "notes": "Notes"
+    },
+    "payment": {
+      "title": "Make payment",
+      "qr": "Smart QR",
+      "web3": "Web3",
+      "send": "Send",
+      "tag": "Destination tag"
+    }
+  },
   "Common": {
     "search": "Search"
   }

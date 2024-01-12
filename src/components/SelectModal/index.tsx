@@ -43,7 +43,7 @@ export default function SelectModal({ options, label, defaultOption }: SelectMod
   };
   return (
     <>
-      <label className="label-form text-primary-dark" onClick={openModal}>
+      <label className="body-bold text-primary-dark" onClick={openModal}>
         {label}
       </label>
       <div className="relative w-full">
@@ -55,7 +55,7 @@ export default function SelectModal({ options, label, defaultOption }: SelectMod
         />
         <div className="w-full flex py-[1.12rem] px-3 rounded-md border border-dark-500 gap-2">
           <Image src={value.image} alt={value.symbol} width={20} height={20} />
-          <span className="input-form w-full text-primary-dark">{value.name}</span>
+          <span className="body-regular w-full text-primary-dark">{value.name}</span>
           <DownArrow />
         </div>
       </div>

@@ -25,7 +25,7 @@ export default function ModalOption({
     >
       <Image src={image} alt={symbol} width={32} height={32} />
       <div className="flex flex-col w-full">
-        <span className="input-form w-full text-primary-dark">{name}</span>
+        <span className="body-regular w-full text-primary-dark">{name}</span>
         <span className="stylized-small w-full text-dark-400">{symbol}</span>
       </div>
       {selectedName === name ? <CheckCircle /> : <RightArrow />}
