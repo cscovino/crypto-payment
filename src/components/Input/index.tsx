@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from 'react';
+import { ChangeEvent, HTMLInputTypeAttribute } from 'react';
 
 interface InputProps {
   label: string;
@@ -11,6 +11,7 @@ interface InputProps {
   max?: string;
   step?: string;
   required?: boolean;
+  onChange?: (evt: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Input({
@@ -24,6 +25,7 @@ export default function Input({
   max,
   step,
   required = true,
+  onChange,
 }: InputProps) {
   return (
     <>
@@ -41,6 +43,7 @@ export default function Input({
         max={max}
         step={step}
         required={required}
+        onChange={onChange}
       />
     </>
   );

@@ -11,7 +11,12 @@ export default function CreatePayment({
   currencies,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const t = useTranslations('Payment');
-  const [currency, setCurrency] = useState<Currency>(currencies[0]);
+  const [amount, setAmount] = useState('0');
+  const options = currencies.filter(
+    currency =>
+      parseFloat(currency.max_amount) >= parseFloat(amount) &&
+      parseFloat(currency.min_amount) <= parseFloat(amount),
+  );
   return (
     <main className="p-8 w-[42rem] flex flex-col justify-between gap-8 items-center rounded-2xl border border-light-200 shadow-payment">
       <h2 className="heading-2 text-primary-dark">{t('title')}</h2>
@@ -24,14 +29,14 @@ export default function CreatePayment({
             name="amount"
             id="amount"
             step="0.01"
-            min={currency?.min_amount}
-            max={currency?.max_amount}
+            min="0"
+            onChange={evt => setAmount(evt.target.value)}
           />
         </div>
         <div className="w-full flex flex-col justify-center items-start gap-1">
           <SelectModal
-            onSelectItem={currency => setCurrency(currency)}
-            options={currencies}
+            defaultOption={currencies[0]}
+            options={options}
             label={t('form.currency.label')}
           />
         </div>

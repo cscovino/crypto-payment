@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -12,14 +12,19 @@ import ModalOption from './ModalOption';
 interface SelectModalProps {
   label: string;
   options: Currency[];
-  onSelectItem: (currency: Currency) => void;
+  defaultOption: Currency;
 }
 
-export default function SelectModal({ options, label, onSelectItem }: SelectModalProps) {
+export default function SelectModal({ options, label, defaultOption }: SelectModalProps) {
   const t = useTranslations('Common');
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [optionsFiltered, setOptionsFiltered] = useState(options);
-  const [value, setValue] = useState(options[0]);
+  const [value, setValue] = useState(options[0] || defaultOption);
+
+  useEffect(() => {
+    setOptionsFiltered(options);
+  }, [options]);
+
   const openModal = () => {
     dialogRef.current?.showModal();
   };
@@ -57,7 +62,7 @@ export default function SelectModal({ options, label, onSelectItem }: SelectModa
       <dialog ref={dialogRef} className="rounded-xl shadow-modal bg-light-white w-[42rem]">
         <div className="w-full flex flex-col justify-center items-center p-6">
           <div className="w-full flex justify-between items-center mb-4">
-            <span className="heading-5"></span>
+            <span className="heading-5 text-primary-dark">{label}</span>
             <button type="button" onClick={closeModal}>
               <CloseIcon />
             </button>
