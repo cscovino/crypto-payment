@@ -7,7 +7,7 @@ interface QRCardProps {
 export default function QRCard({ info, size = 150 }: QRCardProps) {
   const { Canvas } = useQRCode();
   return (
-    <div className="rounded-lg shadow-modal p-6">
+    <div className="w-[12.375rem] h-[12.375rem] rounded-lg shadow-modal p-6">
       <Canvas
         text={info}
         options={{

@@ -7,6 +7,7 @@ import CopyIcon from '../CopyIcon';
 import QRCard from '../QRCard';
 import WarningIcon from '../WarningIcon';
 import Stopwatch from '../Stopwatch';
+import PaymentMethod from '../PaymentMethod';
 
 interface PaymentSectionProps {
   paymentUri: string;
@@ -33,13 +34,7 @@ export default function PaymentSection({
         <div className="flex justify-center items-center gap-1">
           <Stopwatch start={new Date().toISOString()} end={expiredTime} />
         </div>
-        <div className="flex justify-center items-center gap-4">
-          <Badge text={t('qr')} active />
-          <Badge text={t('web3')} active={false} />
-        </div>
-        <div className="flex justify-center items-center">
-          <QRCard info={paymentUri} />
-        </div>
+        <PaymentMethod paymentUri={paymentUri} />
         <div className="flex flex-col gap-3 justify-center items-center">
           <div className="flex gap-2 justify-center items-center">
             <p className="self-end body-regular font-semibold text-primary-dark">{t('send')}</p>
