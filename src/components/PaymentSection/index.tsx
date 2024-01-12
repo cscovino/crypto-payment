@@ -5,11 +5,10 @@ import { copyToClipboard } from '@/helpers/clipboard';
 import Badge from '../Badge';
 import CopyIcon from '../CopyIcon';
 import QRCard from '../QRCard';
-import StopwatchIcon from '../StopwatchIcon';
 import WarningIcon from '../WarningIcon';
+import Stopwatch from '../Stopwatch';
 
 interface PaymentSectionProps {
-  createdAt: string;
   paymentUri: string;
   expiredTime: string;
   expectedAmout: string;
@@ -19,7 +18,6 @@ interface PaymentSectionProps {
 }
 
 export default function PaymentSection({
-  createdAt,
   expiredTime,
   expectedAmout,
   currencySymbol,
@@ -33,8 +31,7 @@ export default function PaymentSection({
       <h4 className="heading-4 mb-6">{t('title')}</h4>
       <div className="w-full flex flex-col justify-center bg-light-white border border-light-200 rounded-2xl p-8 gap-[1.94rem] shadow-payment">
         <div className="flex justify-center items-center gap-1">
-          <StopwatchIcon />
-          <span className="stylized-semibold">05:08</span>
+          <Stopwatch start={new Date().toISOString()} end={expiredTime} />
         </div>
         <div className="flex justify-center items-center gap-4">
           <Badge text={t('qr')} active />

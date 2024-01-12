@@ -18,7 +18,6 @@ export default function PaymentResume({
         commerce={order.commerce}
       />
       <PaymentSection
-        createdAt={order.created_at}
         expiredTime={order.expired_time}
         expectedAmout={payment.expected_input_amount}
         currencySymbol={payment.input_currency}
@@ -46,8 +45,8 @@ export const getServerSideProps = (async context => {
           blockchain: 'XRP_TEST',
         },
         commerce: 'Comercio de pruebas Semega',
-        created_at: new Date().toLocaleDateString(),
-        expired_time: new Date().toLocaleDateString(),
+        created_at: '2024-01-12T18:27:22Z',
+        expired_time: '2024-01-12T17:46:22Z',
         notes: 'Viajes & Ocio',
       },
       payment: {
