@@ -36,6 +36,16 @@
       "tag": "Etiqueta de destino"
     }
   },
+  "Completed": {
+    "title": "¡Pago completado!",
+    "message": "Lorem ipsum dolor sit amet consectetur. Laoreet blandit auctor et varius dolor elit facilisi enim. Nulla ut ut eu nunc.",
+    "button": "Crear nuevo pago"
+  },
+  "Canceled": {
+    "title": "¡Pago cancelado!",
+    "message": "Lorem ipsum dolor sit amet consectetur. Laoreet blandit auctor et varius dolor elit facilisi enim. Nulla ut ut eu nunc.",
+    "button": "Crear nuevo pago"
+  },
   "Common": {
     "search": "Buscar"
   }

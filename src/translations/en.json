@@ -36,6 +36,16 @@
       "tag": "Destination tag"
     }
   },
+  "Completed": {
+    "title": "Payment completed!",
+    "message": "Lorem ipsum dolor sit amet consectetur. Laoreet blandit auctor et varius dolor elit facilisi enim. Nulla ut ut eu nunc.",
+    "button": "Create new payment"
+  },
+  "Canceled": {
+    "title": "Payment canceled!",
+    "message": "Lorem ipsum dolor sit amet consectetur. Laoreet blandit auctor et varius dolor elit facilisi enim. Nulla ut ut eu nunc.",
+    "button": "Create new payment"
+  },
   "Common": {
     "search": "Search"
   }
