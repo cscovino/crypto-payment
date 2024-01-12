@@ -9,6 +9,8 @@ interface InputProps {
   maxLength?: number;
   min?: string;
   max?: string;
+  step?: string;
+  required?: boolean;
 }
 
 export default function Input({
@@ -20,6 +22,8 @@ export default function Input({
   maxLength,
   min,
   max,
+  step,
+  required = true,
 }: InputProps) {
   return (
     <>
@@ -29,12 +33,14 @@ export default function Input({
       <input
         id={id}
         name={name}
-        className="input-form w-full text-primary-dark placeholder:text-dark-400 py-[1.12rem] px-3 rounded-md border border-light-300"
+        className="input-form w-full text-primary-dark placeholder:text-dark-400 py-[1.12rem] px-3 rounded-md border border-light-300 valid:border-dark-500"
         placeholder={placeholder}
         type={type}
         maxLength={maxLength}
         min={min}
         max={max}
+        step={step}
+        required={required}
       />
     </>
   );

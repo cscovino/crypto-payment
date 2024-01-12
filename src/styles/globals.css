@@ -9,10 +9,22 @@
     line-height: 2.375rem;
   }
 
+  .heading-5 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.375rem;
+  }
+
   .heading-6 {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.25rem;
+  }
+
+  .stylized-small {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1rem;
   }
 
   .label-form {

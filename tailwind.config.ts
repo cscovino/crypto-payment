@@ -38,6 +38,8 @@ const config: Config = {
       },
       boxShadow: {
         payment: '0px 0px 4.387px 0px rgba(0, 0, 0, 0.02), 0px 0px 27px 0px rgba(0, 0, 0, 0.04)',
+        modal:
+          '0px 4.275px 8.55px 0px rgba(96, 97, 112, 0.16), 0px 0px 2.138px 0px rgba(40, 41, 61, 0.04)',
       },
     },
   },

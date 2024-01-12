@@ -13,7 +13,13 @@
         "label": "Concept",
         "placeholder": "Add payment's description"
       },
+      "currency": {
+        "label": "Chose currency"
+      },
       "submit": "Continue"
     }
+  },
+  "Common": {
+    "search": "Search"
   }
 }

@@ -5,6 +5,13 @@ const nextConfig = {
     locales: ['en', 'es'],
     defaultLocale: 'es',
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'payments.pre-bnvo.com',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
