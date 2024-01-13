@@ -14,7 +14,8 @@
         "placeholder": "Añade descripción del pago"
       },
       "currency": {
-        "label": "Seleccionar moneda"
+        "label": "Seleccionar moneda",
+        "tooltip": "El importe debe estar entre los límites permitidos"
       },
       "submit": "Continuar",
       "toast": {

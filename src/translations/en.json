@@ -14,7 +14,8 @@
         "placeholder": "Add payment's description"
       },
       "currency": {
-        "label": "Chose currency"
+        "label": "Chose currency",
+        "tooltip": "The amount must be within the allowed limits"
       },
       "submit": "Continue",
       "toast": {

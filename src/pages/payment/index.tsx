@@ -9,6 +9,8 @@ import SelectModal from '@/components/SelectModal';
 import { postOrder } from '@/api/payment';
 import { useRouter } from 'next/router';
 import { getCurrencies } from '@/api/currency';
+import InfoIcon from '@/components/InfoIcon';
+import Tooltip from '@/components/Tooltip';
 
 export default function CreatePayment({
   currencies,
@@ -74,6 +76,11 @@ export default function CreatePayment({
             defaultOption={currencies[0]}
             options={options}
             label={t('form.currency.label')}
+            labelIcon={
+              <Tooltip text={t('form.currency.tooltip')}>
+                <InfoIcon />
+              </Tooltip>
+            }
           />
         </div>
         <div className="w-full flex flex-col justify-center items-start gap-1">
