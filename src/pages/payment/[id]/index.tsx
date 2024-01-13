@@ -2,11 +2,26 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
 import OrderSection from '@/components/OrderSection';
 import PaymentSection from '@/components/PaymentSection';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { PaymentStatus } from '@/types';
 
 export default function PaymentResume({
   order,
   payment,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const router = useRouter();
+  useEffect(() => {
+    const socket = new WebSocket(`wss://payments.pre-bnvo.com/ws/${order.identifier}`);
+    socket.onmessage = function(event) {
+      console.log(event.data);
+      if ([PaymentStatus.EX, PaymentStatus.OC].includes(event.data.status)) {
+        router.push(`/payment/${order.identifier}/canceled`);
+      } else if ([PaymentStatus.CO, PaymentStatus.AC].includes(event.data.status)) {
+        router.push(`/payment/${order.identifier}/completed`);
+      }
+    };
+  }, []);
   return (
     <main className="w-full flex justify-center items-start gap-8">
       <OrderSection
@@ -33,6 +48,7 @@ export const getServerSideProps = (async context => {
   return {
     props: {
       order: {
+        identifier: 'aasdadd',
         fiat_amount: '56.06',
         fiat: 'EUR',
         currency: {
@@ -46,7 +62,7 @@ export const getServerSideProps = (async context => {
         },
         commerce: 'Comercio de pruebas Semega',
         created_at: '2024-01-12T18:27:22Z',
-        expired_time: '2024-01-12T17:46:22Z',
+        expired_time: '2024-01-13T16:49:22Z',
         notes: 'Viajes & Ocio',
       },
       payment: {

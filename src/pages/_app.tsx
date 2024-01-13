@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
+import { Toaster } from 'react-hot-toast';
 
 import Layout from '@/components/Layout';
 import '@/styles/globals.css';
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <Layout>
         <Component {...pageProps} />
+        <Toaster />
       </Layout>
     </NextIntlClientProvider>
   );

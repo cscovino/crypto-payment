@@ -11,11 +11,12 @@ import ModalOption from './ModalOption';
 
 interface SelectModalProps {
   label: string;
+  name: string;
   options: Currency[];
   defaultOption: Currency;
 }
 
-export default function SelectModal({ options, label, defaultOption }: SelectModalProps) {
+export default function SelectModal({ options, label, defaultOption, name }: SelectModalProps) {
   const t = useTranslations('Common');
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [optionsFiltered, setOptionsFiltered] = useState(options);
@@ -49,10 +50,16 @@ export default function SelectModal({ options, label, defaultOption }: SelectMod
       <div className="relative w-full">
         <select
           className="absolute top-0 left-0 w-full h-full opacity-0"
-          value={value.name}
+          id={name}
+          name={name}
+          value={value.symbol}
           onClick={openModal}
-          onChange={() => { }}
-        />
+          onChange={() => console.log('change')}
+        >
+          {options.map(opt => (
+            <option value={opt.symbol} key={opt.symbol} />
+          ))}
+        </select>
         <div className="w-full flex py-[1.12rem] px-3 rounded-md border border-dark-500 gap-2">
           <Image src={value.image} alt={value.symbol} width={20} height={20} />
           <span className="body-regular w-full text-primary-dark">{value.name}</span>

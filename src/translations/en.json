@@ -16,7 +16,12 @@
       "currency": {
         "label": "Chose currency"
       },
-      "submit": "Continue"
+      "submit": "Continue",
+      "toast": {
+        "loading": "Creating payment...",
+        "success": "Payment created",
+        "error": "Payment could not be created"
+      }
     }
   },
   "Summary": {
@@ -35,6 +40,9 @@
       "send": "Send",
       "tag": "Destination tag"
     }
+  },
+  "Clipboard": {
+    "message": "Copied to clipboard"
   },
   "Completed": {
     "title": "Payment completed!",
