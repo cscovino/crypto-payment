@@ -1,4 +1,4 @@
-import useStopwatch from '@/hooks/stopwatch';
+import useStopwatch from '@/hooks/useStopwatch';
 
 import StopwatchIcon from '../StopwatchIcon';
 

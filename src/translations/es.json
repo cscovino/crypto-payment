@@ -42,7 +42,11 @@
     }
   },
   "Metamask": {
-    "soon": "Próximamente disponible"
+    "connect": "Conectar",
+    "install": "Necesitas instalar metamask",
+    "account": "Cuenta",
+    "balance": "Saldo",
+    "network": "Red"
   },
   "Clipboard": {
     "message": "Copiado en el portapeles"

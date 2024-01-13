@@ -42,7 +42,11 @@
     }
   },
   "Metamask": {
-    "soon": "Available soon"
+    "connect": "Connect",
+    "install": "You need install metamask",
+    "account": "Account",
+    "balance": "Balance",
+    "network": "Network"
   },
   "Clipboard": {
     "message": "Copied to clipboard"
