@@ -5,6 +5,7 @@ import PaymentSection from '@/components/PaymentSection';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { PaymentStatus } from '@/types';
+import { getOrder } from '@/api/payment';
 
 export default function PaymentResume({
   order,
@@ -45,34 +46,41 @@ export default function PaymentResume({
 }
 
 export const getServerSideProps = (async context => {
-  return {
-    props: {
-      order: {
-        identifier: 'aasdadd',
-        fiat_amount: '56.06',
-        fiat: 'EUR',
-        currency: {
-          symbol: 'XRP_TEST',
-          name: 'Ripple Test XRP',
-          min_amount: '0.01',
-          max_amount: '20000.00',
-          image:
-            'https://payments.pre-bnvo.com/media/crytocurrencies/CurrencyXRP_Size36_px_StrokeON.png',
-          blockchain: 'XRP_TEST',
+  try {
+    const orderInfo = await getOrder((context.params?.id as string) || '');
+    return {
+      props: {
+        order: {
+          identifier: 'aasdadd',
+          fiat_amount: '56.06',
+          fiat: 'EUR',
+          currency: {
+            symbol: 'XRP_TEST',
+            name: 'Ripple Test XRP',
+            min_amount: '0.01',
+            max_amount: '20000.00',
+            image:
+              'https://payments.pre-bnvo.com/media/crytocurrencies/CurrencyXRP_Size36_px_StrokeON.png',
+            blockchain: 'XRP_TEST',
+          },
+          commerce: 'Comercio de pruebas Semega',
+          created_at: '2024-01-12T18:27:22Z',
+          expired_time: '2024-01-13T16:49:22Z',
+          notes: 'Viajes & Ocio',
         },
-        commerce: 'Comercio de pruebas Semega',
-        created_at: '2024-01-12T18:27:22Z',
-        expired_time: '2024-01-13T16:49:22Z',
-        notes: 'Viajes & Ocio',
+        payment: {
+          tag_memo: '2557164061',
+          address: 'Xp4Lw2PtQgB7RmedTak143LrXp4Lw2PtQgB7RmedEV731CdTak143LrXp4L',
+          input_currency: 'XRP_TEST',
+          expected_input_amount: '108.92',
+          payment_uri: 'uriuri',
+        },
+        messages: (await import(`@/translations/${context.locale}.json`)).default,
       },
-      payment: {
-        tag_memo: '2557164061',
-        address: 'Xp4Lw2PtQgB7RmedTak143LrXp4Lw2PtQgB7RmedEV731CdTak143LrXp4L',
-        input_currency: 'XRP_TEST',
-        expected_input_amount: '108.92',
-        payment_uri: 'uriuri',
-      },
-      messages: (await import(`@/translations/${context.locale}.json`)).default,
-    },
-  };
+    };
+  } catch {
+    return {
+      redirect: { destination: '/', permanent: false },
+    };
+  }
 }) satisfies GetServerSideProps;

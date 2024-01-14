@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import { getCurrencies } from '@/api/currency';
 import InfoIcon from '@/components/InfoIcon';
 import Tooltip from '@/components/Tooltip';
+import { Currency, ErrorResponse, GetCurrenciesResponse } from '@/types';
 
 export default function CreatePayment({
   currencies,
@@ -100,11 +101,28 @@ export default function CreatePayment({
 }
 
 export const getServerSideProps = (async context => {
-  const currencies = await getCurrencies();
-  return {
-    props: {
-      currencies,
-      messages: (await import(`@/translations/${context.locale}.json`)).default,
-    },
-  };
-}) satisfies GetServerSideProps;
+  try {
+    const currencies = await getCurrencies();
+    if ((currencies as ErrorResponse).detail) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+    return {
+      props: {
+        currencies: currencies as GetCurrenciesResponse,
+        messages: (await import(`@/translations/${context.locale}.json`)).default,
+      },
+    };
+  } catch {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+}) satisfies GetServerSideProps<{ currencies: Currency[] }>;

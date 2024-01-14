@@ -11,6 +11,11 @@ export enum PaymentStatus {
   FA = 'FA',
   DE = 'DE',
 }
+
+export interface ErrorResponse {
+  detail: string;
+}
+
 export interface Currency {
   symbol: string;
   name: string;
@@ -41,4 +46,44 @@ export interface PostOrderResponse {
   notes: string;
   fiat: string;
   language: string;
+}
+
+export interface GetOrderResponse {
+  identifier: string;
+  reference: string;
+  created_at: string;
+  edited_at: string;
+  status: string;
+  fiat_amount: number;
+  crypto_amount: number;
+  unconfirmed_amount: number;
+  confirmed_amount: number;
+  currency_id: string;
+  merchant_device_id: number;
+  address: string;
+  tag_memo: string;
+  url_ko: string;
+  url_ok: string;
+  url_standby: string;
+  expired_time: string;
+  good_fee: boolean;
+  notes: string;
+  rbf: boolean;
+  safe: boolean;
+  fiat: string;
+  language: string;
+  percentage: number;
+  received_amount: number;
+  balance_based: string;
+  internal_data: string;
+  transactions: Transaction[];
+}
+
+export interface Transaction {
+  confirmed: boolean;
+  currency: string;
+  amount: number;
+  tx_hash: string;
+  block: number;
+  created_at: string;
 }
