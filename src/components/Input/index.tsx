@@ -1,7 +1,8 @@
-import { ChangeEvent, HTMLInputTypeAttribute } from 'react';
+import { ChangeEvent, HTMLInputTypeAttribute, ReactNode } from 'react';
 
 interface InputProps {
   label: string;
+  labelIcon?: ReactNode;
   id: string;
   name: string;
   placeholder: string;
@@ -16,6 +17,7 @@ interface InputProps {
 
 export default function Input({
   label,
+  labelIcon,
   id,
   name,
   placeholder,
@@ -29,8 +31,12 @@ export default function Input({
 }: InputProps) {
   return (
     <>
-      <label className="body-bold text-primary-dark" htmlFor={id}>
+      <label
+        className="flex justify-center items-center gap-1 body-bold text-primary-dark"
+        htmlFor={id}
+      >
         {label}
+        {labelIcon}
       </label>
       <input
         id={id}

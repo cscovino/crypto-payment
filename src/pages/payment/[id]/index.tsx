@@ -1,78 +1,87 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { useRouter } from 'next/router';
 
+import { getOrder } from '@/api/payment';
+import { getCurrencies } from '@/api/currency';
 import OrderSection from '@/components/OrderSection';
 import PaymentSection from '@/components/PaymentSection';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { PaymentStatus } from '@/types';
+import { formatDate } from '@/helpers/date';
+import useWebSocket from '@/hooks/useWebSocket';
+import { WS_URL } from '@/config';
+import { Currency, GetOrderResponse, PaymentStatus } from '@/types';
 
 export default function PaymentResume({
   order,
-  payment,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
-  useEffect(() => {
-    const socket = new WebSocket(`wss://payments.pre-bnvo.com/ws/${order.identifier}`);
-    socket.onmessage = function(event) {
-      console.log(event.data);
-      if ([PaymentStatus.EX, PaymentStatus.OC].includes(event.data.status)) {
-        router.push(`/payment/${order.identifier}/canceled`);
-      } else if ([PaymentStatus.CO, PaymentStatus.AC].includes(event.data.status)) {
-        router.push(`/payment/${order.identifier}/completed`);
-      }
-    };
-  }, []);
+  const statusMessage = useWebSocket<GetOrderResponse>(`${WS_URL}/${order.identifier}`);
+  if (statusMessage !== undefined) {
+    if ([PaymentStatus.EX, PaymentStatus.OC].includes(statusMessage.status)) {
+      router.push(`/payment/${order.identifier}/canceled`);
+    } else if ([PaymentStatus.CO, PaymentStatus.AC].includes(statusMessage.status)) {
+      router.push(`/payment/${order.identifier}/completed`);
+    }
+  }
   return (
     <main className="w-full flex justify-center items-start gap-8">
       <OrderSection
         fiat={order.fiat}
-        fiatAmount={order.fiat_amount}
+        fiatAmount={order.fiatAmount}
         currency={order.currency}
-        createdAt={order.created_at}
+        createdAt={order.createdAt}
         notes={order.notes}
         commerce={order.commerce}
       />
       <PaymentSection
-        expiredTime={order.expired_time}
-        expectedAmout={payment.expected_input_amount}
-        currencySymbol={payment.input_currency}
-        paymentUri={payment.payment_uri}
-        tagMemo={payment.tag_memo}
-        address={payment.address}
+        expiredTime={order.expiredTime}
+        expectedAmout={order.cryptoAmount}
+        currencySymbol={order.currency.symbol}
+        paymentUri={order.paymentUri}
+        tagMemo={order.tagMemo}
+        address={order.address}
       />
     </main>
   );
 }
 
 export const getServerSideProps = (async context => {
-  return {
-    props: {
-      order: {
-        identifier: 'aasdadd',
-        fiat_amount: '56.06',
-        fiat: 'EUR',
-        currency: {
-          symbol: 'XRP_TEST',
-          name: 'Ripple Test XRP',
-          min_amount: '0.01',
-          max_amount: '20000.00',
-          image:
-            'https://payments.pre-bnvo.com/media/crytocurrencies/CurrencyXRP_Size36_px_StrokeON.png',
-          blockchain: 'XRP_TEST',
+  try {
+    const orderInfo = await getOrder((context.params?.id as string) || '');
+    if ([PaymentStatus.EX, PaymentStatus.OC].includes(orderInfo.status)) {
+      return {
+        redirect: { destination: `/payment/${orderInfo.identifier}/canceled`, permanent: false },
+      };
+    }
+    if ([PaymentStatus.CO, PaymentStatus.AC].includes(orderInfo.status)) {
+      return {
+        redirect: { destination: `/payment/${orderInfo.identifier}/completed`, permanent: false },
+      };
+    }
+    const currencies = await getCurrencies();
+    const currency = currencies.find(currency => currency.symbol === orderInfo.currency_id);
+    return {
+      props: {
+        order: {
+          identifier: orderInfo.identifier,
+          fiatAmount: orderInfo.fiat_amount.toString(),
+          fiat: orderInfo.fiat,
+          tagMemo: orderInfo.tag_memo,
+          address: orderInfo.address,
+          cryptoAmount: orderInfo.crypto_amount.toString(),
+          currency: currency as Currency,
+          createdAt: formatDate(orderInfo.created_at, context.locale),
+          expiredTime: orderInfo.expired_time,
+          commerce: orderInfo.merchant_device_id.toString(),
+          notes: orderInfo.notes,
+          paymentUri: context.query.uri as string,
         },
-        commerce: 'Comercio de pruebas Semega',
-        created_at: '2024-01-12T18:27:22Z',
-        expired_time: '2024-01-13T16:49:22Z',
-        notes: 'Viajes & Ocio',
+        messages: (await import(`@/translations/${context.locale}.json`)).default,
       },
-      payment: {
-        tag_memo: '2557164061',
-        address: 'Xp4Lw2PtQgB7RmedTak143LrXp4Lw2PtQgB7RmedEV731CdTak143LrXp4L',
-        input_currency: 'XRP_TEST',
-        expected_input_amount: '108.92',
-        payment_uri: 'uriuri',
-      },
-      messages: (await import(`@/translations/${context.locale}.json`)).default,
-    },
-  };
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      redirect: { destination: '/', permanent: false },
+    };
+  }
 }) satisfies GetServerSideProps;

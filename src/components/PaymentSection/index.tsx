@@ -2,9 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { copyToClipboard } from '@/helpers/clipboard';
 
-import Badge from '../Badge';
 import CopyIcon from '../CopyIcon';
-import QRCard from '../QRCard';
 import WarningIcon from '../WarningIcon';
 import Stopwatch from '../Stopwatch';
 import PaymentMethod from '../PaymentMethod';
@@ -54,15 +52,17 @@ export default function PaymentSection({
               <CopyIcon />
             </button>
           </div>
-          <div className="flex gap-2 justify-center items-center px-10">
-            <WarningIcon />
-            <p className="stylized-semibold text-primary-dark text-center">
-              {t('Summary.payment.tag')}: {tagMemo}
-            </p>
-            <button type="button" className="self-start" onClick={() => copy(tagMemo)}>
-              <CopyIcon />
-            </button>
-          </div>
+          {!!tagMemo ? (
+            <div className="flex gap-2 justify-center items-center px-10">
+              <WarningIcon />
+              <p className="stylized-semibold text-primary-dark text-center">
+                {t('Summary.payment.tag')}: {tagMemo}
+              </p>
+              <button type="button" className="self-start" onClick={() => copy(tagMemo)}>
+                <CopyIcon />
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>
