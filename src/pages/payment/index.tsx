@@ -2,16 +2,16 @@ import { FormEvent, useRef, useState } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useTranslations } from 'next-intl';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import SelectModal from '@/components/SelectModal';
 import { postOrder } from '@/api/payment';
-import { useRouter } from 'next/router';
 import { getCurrencies } from '@/api/currency';
 import InfoIcon from '@/components/InfoIcon';
 import Tooltip from '@/components/Tooltip';
-import { Currency, ErrorResponse, GetCurrenciesResponse } from '@/types';
+import { Currency } from '@/types';
 
 export default function CreatePayment({
   currencies,
@@ -39,7 +39,7 @@ export default function CreatePayment({
         success: orderInfo => {
           setButtonDisabled(false);
           router.push({
-            pathname: `/paymet/${orderInfo.identifier}`,
+            pathname: `/payment/${orderInfo.identifier}`,
             query: { uri: orderInfo.payment_uri },
           });
           return t('form.toast.success');
@@ -103,21 +103,14 @@ export default function CreatePayment({
 export const getServerSideProps = (async context => {
   try {
     const currencies = await getCurrencies();
-    if ((currencies as ErrorResponse).detail) {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
-      };
-    }
     return {
       props: {
-        currencies: currencies as GetCurrenciesResponse,
+        currencies: currencies,
         messages: (await import(`@/translations/${context.locale}.json`)).default,
       },
     };
-  } catch {
+  } catch (err) {
+    console.error(err);
     return {
       redirect: {
         destination: '/',

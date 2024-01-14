@@ -50,21 +50,22 @@ export interface PostOrderResponse {
 
 export interface GetOrderResponse {
   identifier: string;
-  reference: string;
+  reference: null;
   created_at: string;
   edited_at: string;
-  status: string;
+  status: PaymentStatus;
   fiat_amount: number;
   crypto_amount: number;
   unconfirmed_amount: number;
   confirmed_amount: number;
   currency_id: string;
   merchant_device_id: number;
+  merchant_device: string;
   address: string;
   tag_memo: string;
-  url_ko: string;
-  url_ok: string;
-  url_standby: string;
+  url_ko: null;
+  url_ok: null;
+  url_standby: null;
   expired_time: string;
   good_fee: boolean;
   notes: string;
@@ -75,7 +76,7 @@ export interface GetOrderResponse {
   percentage: number;
   received_amount: number;
   balance_based: string;
-  internal_data: string;
+  internal_data: null;
   transactions: Transaction[];
 }
 
