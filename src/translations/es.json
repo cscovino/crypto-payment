@@ -43,7 +43,18 @@
     }
   },
   "Metamask": {
-    "soon": "Próximamente disponible"
+    "connect": "Conectar",
+    "install": "Necesitas instalar metamask",
+    "account": "Cuenta",
+    "balance": "Saldo",
+    "insufficient": "Saldo insuficiente",
+    "network": "Red",
+    "supported": "Sólo ETH soportado",
+    "txHash": "Hash de transacción",
+    "loading": "Enviando...",
+    "success": "Transacción enviada. Espere unos minutos hasta completar el pago.",
+    "error": "No se pudo enviar la transacción",
+    "send": "Enviar"
   },
   "Clipboard": {
     "message": "Copiado en el portapeles"

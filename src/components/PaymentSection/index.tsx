@@ -33,7 +33,12 @@ export default function PaymentSection({
         <div className="flex justify-center items-center gap-1">
           <Stopwatch start={new Date().toISOString()} end={expiredTime} />
         </div>
-        <PaymentMethod paymentUri={paymentUri} />
+        <PaymentMethod
+          paymentUri={paymentUri}
+          address={address}
+          amount={expectedAmout}
+          currencySymbol={currencySymbol}
+        />
         <div className="flex flex-col gap-3 justify-center items-center">
           <div className="flex gap-2 justify-center items-center">
             <p className="self-end body-regular font-semibold text-primary-dark">

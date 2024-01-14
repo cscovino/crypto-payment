@@ -15,6 +15,7 @@ export default function PaymentResume({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
   const statusMessage = useWebSocket<GetOrderResponse>(`${WS_URL}/${order.identifier}`);
+  console.log(statusMessage);
   if (statusMessage !== undefined) {
     if ([PaymentStatus.EX, PaymentStatus.OC].includes(statusMessage.status)) {
       router.push(`/payment/${order.identifier}/canceled`);
@@ -71,7 +72,7 @@ export const getServerSideProps = (async context => {
           currency: currency as Currency,
           createdAt: formatDate(orderInfo.created_at, context.locale),
           expiredTime: orderInfo.expired_time,
-          commerce: orderInfo.merchant_device_id.toString(),
+          commerce: orderInfo.merchant_device,
           notes: orderInfo.notes,
           paymentUri: context.query.uri as string,
         },
