@@ -27,9 +27,9 @@ export default function PaymentSection({
   const t = useTranslations();
   const copy = (text: string) => copyToClipboard(text, t('Clipboard.message'));
   return (
-    <section className="w-[36.4rem] flex flex-col justify-center">
+    <section className="w-[clamp(22.4rem,80vw,36.4rem)] flex flex-col justify-center">
       <h4 className="heading-4 mb-6">{t('Summary.payment.title')}</h4>
-      <div className="w-full flex flex-col justify-center bg-light-white border border-light-200 rounded-2xl p-8 gap-[1.94rem] shadow-payment">
+      <div className="w-full flex flex-col justify-center bg-light-white border border-light-200 rounded-2xl p-8 gap-[1.94rem] shadow-payment max-sm:p-6">
         <div className="flex justify-center items-center gap-1">
           <Stopwatch start={new Date().toISOString()} end={expiredTime} />
         </div>

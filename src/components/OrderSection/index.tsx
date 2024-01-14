@@ -24,9 +24,9 @@ export default function OrderSection({
 }: OrderSectionProps) {
   const t = useTranslations('Summary.order');
   return (
-    <section className="w-[36.4rem] flex flex-col justify-center">
+    <section className="w-[clamp(22.4rem,80vw,36.4rem)] flex flex-col justify-center max-sm:m-6">
       <h4 className="heading-4 mb-6">{t('title')}</h4>
-      <div className="w-full flex flex-col justify-center bg-light-500 rounded-2xl p-8 gap-[1.94rem]">
+      <div className="w-full flex flex-col justify-center bg-light-500 rounded-2xl p-8 gap-[1.94rem] max-sm:p-6">
         <div className="w-full flex justify-between items-start pb-[1.375rem] px-2 border-b border-dark-500">
           <p className="heading-5 text-primary-dark">{t('amount')}:</p>
           <p className="heading-5 text-primary-dark">

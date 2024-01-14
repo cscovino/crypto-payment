@@ -52,7 +52,7 @@ export default function CreatePayment({
     }
   };
   return (
-    <main className="p-8 w-[42rem] flex flex-col justify-between gap-8 items-center rounded-2xl border border-light-200 shadow-payment">
+    <main className="p-8 w-[42rem] flex flex-col justify-between gap-8 items-center rounded-2xl border border-light-200 shadow-payment max-sm:p-5 max-sm:mx-3">
       <h2 className="heading-2 text-primary-dark">{t('title')}</h2>
       <form
         ref={formRef}

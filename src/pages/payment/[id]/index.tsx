@@ -24,7 +24,7 @@ export default function PaymentResume({
     }
   }
   return (
-    <main className="w-full flex justify-center items-start gap-8">
+    <main className="w-full flex justify-center items-start gap-8 px-8 max-sm:flex-col max-sm:items-center">
       <OrderSection
         fiat={order.fiat}
         fiatAmount={order.fiatAmount}
