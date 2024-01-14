@@ -47,7 +47,14 @@
     "install": "You need install metamask",
     "account": "Account",
     "balance": "Balance",
-    "network": "Network"
+    "insufficient": "Insufficient balance",
+    "network": "Network",
+    "supported": "Only ETH supported",
+    "txHash": "Transaction hash",
+    "loading": "Sending...",
+    "success": "Transaction sent. Please wait a few minutes to complete payment.",
+    "error": "Transaction could not be sent",
+    "send": "Send"
   },
   "Clipboard": {
     "message": "Copied to clipboard"

@@ -63,7 +63,7 @@ export default function SelectModal({
           className="absolute top-0 left-0 w-full h-full opacity-0"
           id={name}
           name={name}
-          value={value.blockchain}
+          value={value.symbol}
           onClick={openModal}
           onChange={() => { }}
         >
