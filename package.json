@@ -20,6 +20,7 @@
   "dependencies": {
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/providers": "^14.0.2",
+    "lottie-react": "^2.4.0",
     "next": "14.0.4",
     "next-intl": "^3.4.2",
     "next-qrcode": "^2.5.1",
