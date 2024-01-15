@@ -7,6 +7,7 @@ export default function useStopwatch(start: string, end: string, step: number = 
   const endTime = new Date(end).getTime();
   const remainingTime = endTime - startTime;
   const [time, setTime] = useState(remainingTime > 0 ? remainingTime : 0);
+  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,6 +15,7 @@ export default function useStopwatch(start: string, end: string, step: number = 
         const remain = prev - step;
         if (remain < 0) {
           clearInterval(interval);
+          setFinished(true);
         }
         return remain > 0 ? remain : 0;
       });
@@ -22,5 +24,5 @@ export default function useStopwatch(start: string, end: string, step: number = 
     return () => clearInterval(interval);
   }, []);
 
-  return msToStringTime(time);
+  return { remainingTime: msToStringTime(time), finished };
 }

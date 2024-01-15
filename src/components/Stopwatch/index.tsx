@@ -6,10 +6,14 @@ interface StopwatchProps {
   start: string;
   end: string;
   step?: number;
+  onEnd?: () => void;
 }
 
-export default function Stopwatch({ start, end, step = 1000 }: StopwatchProps) {
-  const remainingTime = useStopwatch(start, end, step);
+export default function Stopwatch({ start, end, step = 1000, onEnd }: StopwatchProps) {
+  const { remainingTime, finished } = useStopwatch(start, end, step);
+  if (finished && !!onEnd) {
+    setTimeout(() => onEnd(), 2000);
+  }
   return (
     <>
       <StopwatchIcon />

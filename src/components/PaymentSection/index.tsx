@@ -6,6 +6,7 @@ import CopyIcon from '../CopyIcon';
 import WarningIcon from '../WarningIcon';
 import Stopwatch from '../Stopwatch';
 import PaymentMethod from '../PaymentMethod';
+import { useRouter } from 'next/router';
 
 interface PaymentSectionProps {
   paymentUri: string;
@@ -24,6 +25,7 @@ export default function PaymentSection({
   tagMemo,
   paymentUri,
 }: PaymentSectionProps) {
+  const router = useRouter();
   const t = useTranslations();
   const copy = (text: string) => copyToClipboard(text, t('Clipboard.message'));
   return (
@@ -31,7 +33,7 @@ export default function PaymentSection({
       <h4 className="heading-4 mb-6">{t('Summary.payment.title')}</h4>
       <div className="w-full flex flex-col justify-center bg-light-white border border-light-200 rounded-2xl p-8 gap-[1.94rem] shadow-payment max-sm:p-6">
         <div className="flex justify-center items-center gap-1">
-          <Stopwatch start={new Date().toISOString()} end={expiredTime} />
+          <Stopwatch start={new Date().toISOString()} end={expiredTime} onEnd={router.reload} />
         </div>
         <PaymentMethod
           paymentUri={paymentUri}
