@@ -28,7 +28,7 @@ export default function PaymentResume({
         fiat={order.fiat}
         fiatAmount={order.fiatAmount}
         currency={order.currency}
-        createdAt={order.createdAt}
+        createdAt={formatDate(order.createdAt, router.locale)}
         notes={order.notes}
         commerce={order.commerce}
       />
@@ -69,7 +69,7 @@ export const getServerSideProps = (async context => {
           address: orderInfo.address,
           cryptoAmount: orderInfo.crypto_amount.toString(),
           currency: currency as Currency,
-          createdAt: formatDate(orderInfo.created_at, context.locale),
+          createdAt: orderInfo.created_at,
           expiredTime: orderInfo.expired_time,
           commerce: orderInfo.merchant_device,
           notes: orderInfo.notes,
