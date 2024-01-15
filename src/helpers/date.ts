@@ -7,5 +7,6 @@ export const formatDate = (date: string, locale: string = 'es') => {
     hour: '2-digit',
     minute: '2-digit',
     hour12: false,
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   }).format(dateObject);
 };

@@ -11,7 +11,6 @@ import { postOrder } from '@/api/payment';
 import { getCurrencies } from '@/api/currency';
 import InfoIcon from '@/components/InfoIcon';
 import Tooltip from '@/components/Tooltip';
-import { Currency } from '@/types';
 
 export default function CreatePayment({
   currencies,
@@ -113,9 +112,9 @@ export const getServerSideProps = (async context => {
     console.error(err);
     return {
       redirect: {
-        destination: '/',
+        destination: `/?error=${err}`,
         permanent: false,
       },
     };
   }
-}) satisfies GetServerSideProps<{ currencies: Currency[] }>;
+}) satisfies GetServerSideProps;
