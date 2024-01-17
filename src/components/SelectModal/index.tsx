@@ -53,6 +53,7 @@ export default function SelectModal({
     <>
       <label
         className="flex justify-center items-center gap-1 body-bold text-primary-dark"
+        htmlFor={name}
         onClick={openModal}
       >
         {label}
@@ -60,15 +61,20 @@ export default function SelectModal({
       </label>
       <div className="relative w-full">
         <select
-          className="absolute top-0 left-0 w-full h-full opacity-0"
+          className="absolute top-0 left-0 w-full h-full opacity-0 appearance-none select-none"
           id={name}
           name={name}
           value={value.symbol}
-          onClick={openModal}
-          onChange={() => { }}
+          onMouseDown={evt => evt.preventDefault()}
+          onClick={() => openModal()}
+          onChange={evt => {
+            onSelect(options.find(opt => opt.symbol === evt.target.value) as Currency);
+          }}
         >
           {options.map(opt => (
-            <option value={opt.symbol} key={opt.symbol} />
+            <option value={opt.symbol} key={opt.symbol}>
+              {opt.name}
+            </option>
           ))}
         </select>
         <div className="w-full flex py-[1.12rem] px-3 rounded-md border border-dark-500 gap-2">
